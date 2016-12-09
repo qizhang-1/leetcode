@@ -1,6 +1,6 @@
 JC=javac
-SOURCES=\
-	Solution.java
+CLASSES=\
+	Solution.java test.java
 JFLAGS=-g
 .SUFFIXES: .java .class
 .java.class:
@@ -8,7 +8,7 @@ JFLAGS=-g
 
 default: classes
 
-classes: $(SOURCES:.java=.class)
+classes: $(CLASSES:.java=.class)
 
 clean:
 	rm  *.class
