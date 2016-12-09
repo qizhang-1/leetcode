@@ -1,3 +1,10 @@
+/* --------------------------------------------
+ * File Name : Solution.java
+ * Purpose :
+ * Creation Date : 12-04-2016
+ * Last Modified : Thu Dec  8 20:47:18 2016
+ * Created By : QI ZHANG 
+ * -------------------------------------------- */
 public class Solution{
     public static boolean isPalindrom(int x){
         if (x<0)
