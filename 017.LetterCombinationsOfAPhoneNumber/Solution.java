@@ -48,7 +48,7 @@ public class Solution {
         }
     }
     public static void main(String [] args){
-        String s = "2793";
+        String s = "3647";
         List<String> result = new ArrayList<String>();
         result = letterCombinations(s);
         for (int i=0; i<result.size(); i++)
