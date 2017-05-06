@@ -15,7 +15,7 @@ public class MergeSort{
     public void sort(int[] nums){
         this.nums = nums;
         length = nums.length;
-        this.cache = new int[length];
+        cache = new int[length];
         mergeSort(0, length - 1);
     }
 
