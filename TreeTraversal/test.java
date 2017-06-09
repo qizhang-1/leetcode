@@ -10,6 +10,7 @@ import java.util.*;
 public class test{
     public static void main(String args[]){
         Solution soln = new Solution();
+        /* old method 
         TreeNode root = new TreeNode(5);
         TreeNode p1 = new TreeNode(3);
         TreeNode p2 = new TreeNode(8);
@@ -25,7 +26,14 @@ public class test{
         p2.right = p5;
         p3.left = p6;
         p4.right = p7;
-
+        */
+        String str = "10,5, 15, #,7, #, 17, 6, #, #, 20,#,#,#";
+        TreeNode root = soln.deserialize(str);
+        String str2 = soln.serialize(root);
+        System.out.println("========= Serialize & Deserialize ============");
+        System.out.println(str);
+        System.out.println(str2);
+        System.out.println("=======================================");
         List<Integer> ans_r = new LinkedList<>();
         LinkedList<Integer> ans_i = new LinkedList<>();
 
@@ -48,8 +56,12 @@ public class test{
         soln.postOrderTraversal_I(ans_i, root);
         printList("Post order traversal (Recursive): ", ans_r);
         printList("Post order traversal (Iterative): ", ans_i);
-        System.out.println("=======================================");
+        System.out.println("=======================================");        
+        ans_i.clear();
+        soln.levelOrderTraversal(ans_i, root);
+        printList("Level order traversal (Iterative): ", ans_i);
     }
+
     private static void printList(String head, List<Integer> list){
         System.out.println(head);
         Iterator<Integer> it = list.iterator();

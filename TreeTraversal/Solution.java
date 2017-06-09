@@ -75,6 +75,79 @@ public class Solution {
             }   
         }
     }
+
+    public void levelOrderTraversal(List<Integer> list, TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root != null)   q.offer(root);
+        while (!q.isEmpty()){
+            int size = q.size();
+            for (int i = 0; i < size; i++){
+                TreeNode node = q.poll();
+                list.add(node.val);
+                if (node.left != null)   q.offer(node.left);
+                if (node.right != null)  q.offer(node.right);
+            }
+        }
+    }
+    
+    public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root == null)   return "";
+        q.offer(root);
+        while (!q.isEmpty()){
+            int size = q.size();
+            for (int i = 0; i < size; i++){
+                TreeNode node = q.poll();
+                if (node == null)
+                    sb.append("#");
+                else
+                    sb.append(node.val);
+                sb.append(",");
+                if (node != null){
+                    q.offer(node.left);
+                    q.offer(node.right);
+                }
+            }
+        }
+        int id = 0;
+        for (int i = sb.length()-1; i >= 0; i--){
+            if (Character.isDigit(sb.charAt(i))){
+                id = i;
+                break;
+            }
+        }
+        return sb.toString().substring(0, id+1);
+    }
+    
+    
+    public TreeNode deserialize(String data) {
+        if (data == null || data.length() == 0)
+            return null;
+        String[] tokens = data.split("\\,");
+        Queue<TreeNode> q = new LinkedList<>();
+        TreeNode root = genNode(tokens[0]);
+        if (root == null)   return null;
+        q.offer(root);
+        int i = 1;
+        while (i < tokens.length){
+            TreeNode node = q.poll();
+            TreeNode left = genNode(tokens[i++]);
+            node.left = left;
+            if (i >= tokens.length) break;
+            TreeNode right = genNode(tokens[i++]);
+            node.right = right;
+            if (left  != null)    q.offer(left);
+            if (right != null)    q.offer(right);
+        }
+        return root;
+    }
+
+    private TreeNode genNode(String token) {
+        token = token.trim();
+        if (token.equals("#"))  return null;
+        return new TreeNode(Integer.valueOf(token));
+    }
 }
 
 
