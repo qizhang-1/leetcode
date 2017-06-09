@@ -27,7 +27,7 @@ public class test{
         p3.left = p6;
         p4.right = p7;
         */
-        String str = "10,5, 15, #,7, #, 17, 6, #, #, 20,#,#,#";
+        String str = "10,    5, 15, #,7, #, 17, 6, #, #, 20,#,#,#";
         TreeNode root = soln.deserialize(str);
         String str2 = soln.serialize(root);
         System.out.println("========= Serialize & Deserialize ============");
@@ -42,6 +42,9 @@ public class test{
         System.out.println("=======================================");
         printList("In order traversal (Recursive): ", ans_r);
         printList("In order traversal (Iterative): ", ans_i);
+        ans_i.clear();
+        soln.morrisTraversal(ans_i, root);        
+        printList("Morries In order traversal (Iterative): ", ans_i);
         System.out.println("=======================================");
         ans_r.clear();
         ans_i.clear();
@@ -57,9 +60,12 @@ public class test{
         printList("Post order traversal (Recursive): ", ans_r);
         printList("Post order traversal (Iterative): ", ans_i);
         System.out.println("=======================================");        
+        ans_r.clear();
         ans_i.clear();
         soln.levelOrderTraversal(ans_i, root);
         printList("Level order traversal (Iterative): ", ans_i);
+        ans_r.clear();
+        ans_i.clear();
     }
 
     private static void printList(String head, List<Integer> list){

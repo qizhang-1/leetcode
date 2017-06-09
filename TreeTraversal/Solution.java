@@ -90,6 +90,31 @@ public class Solution {
         }
     }
     
+    public void morrisTraversal(List<Integer> list, TreeNode root) {
+        TreeNode tmp = null;
+        while (root != null) {
+            // connect threading for root
+            if (root.left != null) {
+                tmp = root.left;
+                while (tmp.right != null && tmp.right != root)
+                    tmp = tmp.right;
+                if (tmp.right != null) {
+                    tmp.right = null;
+                    list.add(root.val);
+                    root = root.right;
+                }
+                else {
+                    tmp.right = root;
+                    root = root.left;
+                }
+            }
+            else {
+                list.add(root.val);
+                root = root.right;
+            }
+        }
+    }
+    
     public String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
         Queue<TreeNode> q = new LinkedList<>();
