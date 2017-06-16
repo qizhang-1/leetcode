@@ -89,6 +89,24 @@ public class Solution {
             }
         }
     }
+
+    public TreeNode getSuccessor(TreeNode root, double target) {
+        if (root == null)   return null;
+        if (root.val < target) {
+            return getSuccessor(root.right, target);
+        }
+        TreeNode right = getSuccessor(root.left, target);
+        return right == null ? root : ((right.val > root.val) ? root : right);
+    }
+    
+    private TreeNode getPredecessor(TreeNode root, double target) {
+        if (root == null)   return null;
+        if (root.val > target) {
+            return getPredecessor(root.left, target);
+        }
+        TreeNode left = getPredecessor(root.right, target);
+        return left == null ? root : ((left.val < root.val) ? root : left);
+    }
     
     public void morrisTraversal(List<Integer> list, TreeNode root) {
         TreeNode tmp = null;
